@@ -7,23 +7,24 @@ const (
 )
 
 var (
-	variableLabelsUp               = []string{"error"}
-	variableLabelsRedundancy       = []string{"mate_name"}
-	variableLabelsReplication      = []string{"mate_name"}
-	variableLabelsVpn              = []string{"vpn_name"}
-	variableLabelsClientInfo       = []string{"vpn_name", "client_name", "client_address"}
-	variableLabelsVpnClient        = []string{"vpn_name", "client_name", "client_username"}
-	variableLabelsVpnClientDetail  = []string{"vpn_name", "client_name", "client_username", "client_profile", "acl_profile"}
-	variableLabelsVpnClientFlow    = []string{"vpn_name", "client_name", "client_username", "client_profile", "acl_profile", "flow_id"}
-	variableLabelsVpnQueue         = []string{"vpn_name", "queue_name"}
-	variableLabelsVpnTopicEndpoint = []string{"vpn_name", "topic_endpoint_name"}
-	variableLabelsCluserLink       = []string{"cluster", "node_name", "remote_cluster", "remote_node_name"}
-	variableLabelsBridge           = []string{"vpn_name", "bridge_name"}
-	variableLabelsBridgeStats      = []string{"vpn_name", "bridge_name", "remote_router_name", "remote_vpn_name"}
-	variableLabelsConfigSyncTable  = []string{"table_name"}
-	variableLabelsStorageElement   = []string{"path", "device_name", "element_name"}
-	variableLabelsDisk             = []string{"path", "device_name"}
-	variableLabelsInterface        = []string{"interface_name"}
+	variableLabelsUp                 = []string{"error"}
+	variableLabelsRedundancy         = []string{"mate_name"}
+	variableLabelsReplication        = []string{"mate_name"}
+	variableLabelsVpn                = []string{"vpn_name"}
+	variableLabelsClientInfo         = []string{"vpn_name", "client_name", "client_address"}
+	variableLabelsVpnClient          = []string{"vpn_name", "client_name", "client_username"}
+	variableLabelsVpnClientDetail    = []string{"vpn_name", "client_name", "client_username", "client_profile", "acl_profile"}
+	variableLabelsVpnClientFlow      = []string{"vpn_name", "client_name", "client_username", "client_profile", "acl_profile", "flow_id"}
+	variableLabelsVpnQueue           = []string{"vpn_name", "queue_name"}
+	variableLabelsVpnTopicEndpoint   = []string{"vpn_name", "topic_endpoint_name"}
+	variableLabelsCluserLink         = []string{"cluster", "node_name", "remote_cluster", "remote_node_name"}
+	variableLabelsBridge             = []string{"vpn_name", "bridge_name"}
+	variableLabelsBridgeStats        = []string{"vpn_name", "bridge_name", "remote_router_name", "remote_vpn_name"}
+	variableLabelsConfigSyncTable    = []string{"table_name"}
+	variableLabelsStorageElement     = []string{"path", "device_name", "element_name"}
+	variableLabelsDisk               = []string{"path", "device_name"}
+	variableLabelsInterface          = []string{"interface_name"}
+	variableLabelsSmrpDatabaseRouter = []string{"router"}
 )
 
 type Metrics map[string]*prometheus.Desc
@@ -335,5 +336,8 @@ var MetricDesc = map[string]Metrics{
 		"enabled":     prometheus.NewDesc(namespace+"_"+"cluster_link_enabled", "Clustter link is enabled.", variableLabelsCluserLink, nil),
 		"oper_up":     prometheus.NewDesc(namespace+"_"+"cluster_link_operational", "Clustter link is operational.", variableLabelsCluserLink, nil),
 		"oper_uptime": prometheus.NewDesc(namespace+"_"+"cluster_link_uptime", "Clustter link utime in seconds.", variableLabelsCluserLink, nil),
+	},
+	"SmrpDatabase": {
+		"router_blocks": prometheus.NewDesc(namespace+"_smrp_database_router_blocks", "Number of blocks used for router", variableLabelsSmrpDatabaseRouter, nil),
 	},
 }

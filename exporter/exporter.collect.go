@@ -45,6 +45,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 			up, err = e.semp.GetReplicationStatsSemp1(ch)
 		case "ConfigSyncRouter":
 			up, err = e.semp.GetConfigSyncRouterSemp1(ch)
+		case "SmrpDatabase":
+			up, err = e.semp.GetSmrpDatabaseSemp1(ch)
 		case "Vpn":
 			up, err = e.semp.GetVpnSemp1(ch, dataSource.VpnFilter)
 		case "VpnReplication":
@@ -83,6 +85,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		case "TopicEndpointDetails":
 			up, err = e.semp.GetTopicEndpointDetailsSemp1(ch, dataSource.VpnFilter, dataSource.ItemFilter)
 		}
+
 	}
 	ch <- prometheus.MustNewConstMetric(semp.MetricDesc["Global"]["up"], prometheus.GaugeValue, 1, "")
 }
